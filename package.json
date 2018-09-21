@@ -1,0 +1,120 @@
+{
+  "name": "simple-order-system",
+  "version": "0.0.1",
+  "description": "homework for Zenport",
+  "scripts": {
+    "start": "parcel public/index.html --open",
+    "clean": "rm -rf .cache/ dist/ build/",
+    "build": "cross-env NODE_ENV=production parcel build public/index.html -d build --public-url /simple-order-system/",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "npm run test:coverage --coverageDirectory=coverage --collectCoverage",
+    "lint": "eslint --ext .js src mock test && npm run lint:style",
+    "lint:fix": "eslint --fix --ext .js src mock test && npm run lint:style",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js",
+    "precommit": "npm run test && npm run lint-staged",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": "https://github.com/ThaddeusJiang/simple-order-system.git",
+  "author": "Jifa Jiang <thaddeusjiang@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "autoprefixer": "^8.2.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.4",
+    "babel-plugin-import": "^1.7.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "codecov": "^3.0.2",
+    "cross-env": "^5.1.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-compat": "^2.2.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "gh-pages": "^1.2.0",
+    "husky": "^0.14.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.1.4",
+    "jest-junit": "^5.0.0",
+    "less": "^2.7.3",
+    "lint-staged": "^6.1.0",
+    "parcel-bundler": "^1.9.7",
+    "postcss-modules": "^1.1.0",
+    "prettier": "^1.14.2",
+    "react-test-renderer": "^16.2.0",
+    "sinon": "^5.0.7",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0"
+  },
+  "dependencies": {
+    "antd": "^3.4.1",
+    "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
+    "classname": "^0.0.0",
+    "lodash": "^4.17.5",
+    "moment": "^2.20.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-intl": "^2.4.0",
+    "react-router-dom": "^4.2.2",
+    "sweetalert": "^2.1.0",
+    "url-search-params": "^1.0.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/setupTests.js",
+    "modulePaths": [
+      "<rootDir>/src",
+      "<rootDir>/node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "jsx"
+    ],
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.js?$": "babel-jest",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./test/fileTransformer.js"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,less}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,jsx}": "lint-staged:js",
+    "**/*.less": "stylelint --syntax less"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
+}
